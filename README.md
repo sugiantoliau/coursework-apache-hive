@@ -7,7 +7,9 @@ docker pull apache/hive:4.0.0-alpha-1
 ```
 
 
-Now, you will run the hive server on port 10002. You will name the server instance myhiveserver. We will mount the local data folder in the hive server as hive_custom_data. This would mean that the whole data folder that you created locally, along with anything you add in the data folder, is copied into the container under the directory hive_custom_data.
+Now, you will run the hive server on port 10002. 
+
+You will name the server instance myhiveserver. We will mount the local data folder in the hive server as hive_custom_data. This would mean that the whole data folder that you created locally, along with anything you add in the data folder, is copied into the container under the directory hive_custom_data.
 
 ```
 docker run -d -p 10000:10000 -p 10002:10002 --env SERVICE_NAME=hiveserver2 -v /home/project/data:/hive_custom_data --name myhiveserver apache/hive:4.0.0-alpha-1
@@ -32,10 +34,9 @@ docker exec -it myhiveserver beeline -u 'jdbc:hive2://localhost:10000/'
 #### Create table, add and view data
 
 To create a new table Employee with three columns as in the csv you downloaded - em_id, emp_name and salary, run the following command.
-
-
+```
 create table Employee(emp_id string, emp_name string, salary  int)  row format delimited fields terminated by ',' ;
-
+```
 
 Run the following command to check if the table is created.
 ```
